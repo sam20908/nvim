@@ -19,8 +19,11 @@ return require('packer').startup(function()
   use 'neovim/nvim-lspconfig'
   use 'nvim-lua/completion-nvim'
   use 'puremourning/vimspector'
-  use { 'ilyachur/cmake4vim', branch = 'main' }
+  use { 'ilyachur/cmake4vim', branch = 'master' }
   use 'mhinz/vim-startify'
+
+  use 'preservim/nerdtree'
+  use 'ryanoasis/vim-devicons'
 
   use 'nvim-lua/popup.nvim'
   use 'nvim-lua/plenary.nvim'
@@ -28,4 +31,7 @@ return require('packer').startup(function()
 
   use 'tpope/vim-unimpaired'
   use 'tpope/vim-fugitive'
+  use 'airblade/vim-gitgutter'
+
+  use { 'mg979/vim-visual-multi', branch = 'master' }
 end)

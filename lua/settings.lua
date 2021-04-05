@@ -32,6 +32,10 @@ api.set_window_option('relativenumber', true)
 
 api.set_option('clipboard', 'unnamedplus')
 
+api.set_option('updatetime', 100)
+
+api.set_option('signcolumn', 'auto:[1-9]')
+
 -- Tracked by https://github.com/neovim/neovim/issues/13501
 local local_vimrc = vim.fn.getcwd()..'/.nvimrc'
 if vim.loop.fs_stat(local_vimrc) then
