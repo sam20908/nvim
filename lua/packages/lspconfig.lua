@@ -1,5 +1,8 @@
+local lspconfig = require('lspconfig')
+local completion = require('completion')
+
 local on_attach = function(client, bufnr)
-	require'completion'.on_attach(client)
+	completion.on_attach(client, bufnr)
 
 	local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 	local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -39,6 +42,6 @@ local on_attach = function(client, bufnr)
 --	end
 end
 
-require'lspconfig'.clangd.setup{ on_attach=on_attach }
-require'lspconfig'.pyright.setup{ on_attach=on_attach }
-require'lspconfig'.cmake.setup{ on_attach=on_attach }
+lspconfig.clangd.setup{ on_attach = on_attach }
+lspconfig.pyright.setup{ on_attach = on_attach }
+lspconfig.cmake.setup{ on_attach = on_attach }
