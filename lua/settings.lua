@@ -1,40 +1,45 @@
-api = require('api')
+vim.o.exrc = true
+vim.o.secure = true
 
-api.set_option('exrc', true)
-api.set_option('secure', true)
+vim.o.swapfile = false
+vim.o.backup = false
+vim.bo.swapfile = false
 
-api.set_buffer_option('swapfile', false)
-api.set_option('backup', false)
+vim.o.errorbells = false
+vim.o.visualbell = false
 
-api.set_option('errorbells', false)
-api.set_option('visualbell', false)
+vim.o.pastetoggle = '<F3>'
 
-api.set_option('pastetoggle', '<F3>')
+vim.o.termguicolors = true
 
-api.set_option('wrap', false)
-api.set_option('hlsearch', false)
-api.set_option('scrolloff', 8)
+vim.o.wrap = false
+vim.o.hlsearch = false
+vim.o.scrolloff = 8
 
-api.set_option('completeopt', 'menuone,noinsert')
+vim.o.completeopt = 'menuone,noinsert'
 
-api.set_window_option('signcolumn', 'yes')
+vim.o.signcolumn = 'auto:[1-9]'
 
-api.set_option('tabstop', 4)
-api.set_option('shiftwidth', 4)
-api.set_option('expandtab', true)
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+vim.o.expandtab = true
+vim.bo.tabstop = 4
+vim.bo.shiftwidth = 4
+vim.bo.expandtab = true
 
-api.set_buffer_option('copyindent', true)
-api.set_buffer_option('preserveindent', true)
-api.set_buffer_option('smartindent', true)
+vim.o.copyindent = true
+vim.o.preserveindent = true
+vim.o.smartindent = true
+vim.bo.copyindent = true
+vim.bo.preserveindent = true
+vim.bo.smartindent = true
 
-api.set_window_option('number', true)
-api.set_window_option('relativenumber', true)
+vim.wo.number = true
+vim.wo.relativenumber = true
 
-api.set_option('clipboard', 'unnamedplus')
+vim.o.clipboard = 'unnamedplus'
 
-api.set_option('updatetime', 100)
-
-api.set_option('signcolumn', 'auto:[1-9]')
+vim.o.updatetime = 100
 
 vim.api.nvim_exec([[
     highlight link markdownError NONE
