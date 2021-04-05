@@ -34,4 +34,5 @@ return require('packer').startup(function()
   use 'airblade/vim-gitgutter'
 
   use { 'mg979/vim-visual-multi', branch = 'master' }
+  use 'wellle/targets.vim'
 end)
