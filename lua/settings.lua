@@ -36,6 +36,10 @@ api.set_option('updatetime', 100)
 
 api.set_option('signcolumn', 'auto:[1-9]')
 
+vim.api.nvim_exec([[
+    highlight link markdownError NONE
+]], false)
+
 -- Tracked by https://github.com/neovim/neovim/issues/13501
 local local_vimrc = vim.fn.getcwd()..'/.nvimrc'
 if vim.loop.fs_stat(local_vimrc) then
