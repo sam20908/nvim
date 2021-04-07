@@ -1,4 +1,4 @@
-vim.api.nvim_set_var('vimspector_enable_mappings', 'VISUAL_STUDIO')
+vim.g.vimspector_enable_mappings = 'VISUAL_STUDIO'
 
 local opts = { noremap = true, silent = true }
 local opts_loud = { silent = true }

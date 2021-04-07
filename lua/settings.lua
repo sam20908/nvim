@@ -16,7 +16,8 @@ vim.o.wrap = false
 vim.o.hlsearch = false
 vim.o.scrolloff = 8
 
-vim.o.completeopt = 'menuone,noinsert'
+vim.o.completeopt = 'menuone,noinsert,noselect'
+vim.g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'}
 
 vim.o.signcolumn = 'auto:[1-9]'
 

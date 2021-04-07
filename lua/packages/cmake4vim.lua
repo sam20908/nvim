@@ -1,4 +1,4 @@
-vim.api.nvim_set_var('cmake_vimspector_support', 1)
+vim.g.cmake_vimspector_support = 1
 
 local opts = { noremap = true, silent = true }
 local opts_loud = { noremap = true }

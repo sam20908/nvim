@@ -24,6 +24,7 @@ return require('packer').startup(function()
   use 'puremourning/vimspector'
   use { 'ilyachur/cmake4vim', branch = 'master' }
   use 'mhinz/vim-startify'
+  use 'tpope/vim-dispatch'
 
   use 'preservim/nerdtree'
   use 'ryanoasis/vim-devicons'
