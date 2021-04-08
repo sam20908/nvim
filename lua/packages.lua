@@ -34,6 +34,7 @@ return require('packer').startup(function()
   use 'nvim-telescope/telescope.nvim'
 
   use 'tpope/vim-unimpaired'
+  use 'tpope/vim-surround'
   use 'tpope/vim-fugitive'
   use 'airblade/vim-gitgutter'
 
