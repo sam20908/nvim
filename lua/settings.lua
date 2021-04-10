@@ -18,9 +18,10 @@ vim.o.scrolloff = 8
 
 vim.o.hidden = true
 
+vim.o.cmdheight = 2
+
 vim.o.completeopt = 'menuone,noselect'
 vim.o.shortmess = vim.o.shortmess .. 'c'
-vim.g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'}
 
 vim.o.signcolumn = 'auto:[1-9]'
 
