@@ -54,6 +54,22 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
 	buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 
+	buf_set_keymap('n', 'cbb', '<cmd>CclsBase<CR>', opts)
+	buf_set_keymap('n', 'cbh', '<cmd>CclsBaseHierarchy<CR>', opts)
+	buf_set_keymap('n', 'cdd', '<cmd>CclsDerived<CR>', opts)
+	buf_set_keymap('n', 'cdh', '<cmd>CclsDerivedHierarchy<CR>', opts)
+	buf_set_keymap('n', 'ccc', '<cmd>CclsCallers<CR>', opts)
+	buf_set_keymap('n', 'cch', '<cmd>CclsCallHierarchy<CR>', opts)
+    buf_set_keymap('n', 'cff', '<cmd>CclsCallees<CR>', opts)
+	buf_set_keymap('n', 'cfh', '<cmd>CclsCalleeHierarchy<CR>', opts)
+	buf_set_keymap('n', 'cmmm', '<cmd>CclsMembers<CR>', opts)
+	buf_set_keymap('n', 'cmmh', '<cmd>CclsMemberHierarchy<CR>', opts)
+	buf_set_keymap('n', 'cmff', '<cmd>CclsMemberFunctions<CR>', opts)
+	buf_set_keymap('n', 'cmfh', '<cmd>CclsMemberFunctionHierarchy<CR>', opts)
+	buf_set_keymap('n', 'cmtt', '<cmd>CclsMemberTypes<CR>', opts)
+	buf_set_keymap('n', 'cmth', '<cmd>CclsMemberTypeHierarchy<CR>', opts)
+	buf_set_keymap('n', 'cvv', '<cmd>CclsVars<CR>', opts)
+
 	if client.resolved_capabilities.document_formatting then
 		buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 	elseif client.resolved_capabilities.document_range_formatting then
