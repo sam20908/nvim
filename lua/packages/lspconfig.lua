@@ -14,16 +14,20 @@ compe.setup{
 	};
 }
 
+local t = function(str)
+    return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
 _G.completion_complete = function()
     return vim.fn['compe#complete']()
 end
 
 _G.completion_confirm = function()
-    return vim.fn['compe#confirm']('<CR>')
-end
-
-_G.completion_close = function()
-    return vim.fn['compe#close']('<C-e>')
+    if vim.fn.pumvisible() == 1 then
+        return vim.fn['compe#confirm']('<CR>')
+    else
+        return t '<CR>'
+    end
 end
 
 local on_attach = function(client, bufnr)
@@ -37,7 +41,6 @@ local on_attach = function(client, bufnr)
 
     buf_set_keymap('i', '<C-SPACE>', 'v:lua.completion_complete()', opts_expr)
     buf_set_keymap('i', '<CR>', 'v:lua.completion_confirm()', opts_expr)
-    buf_set_keymap('i', '<C-e>', 'v:lua.completion_close()', opts_expr)
 
 	buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
 	buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
