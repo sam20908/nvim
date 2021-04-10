@@ -18,7 +18,8 @@ vim.o.scrolloff = 8
 
 vim.o.hidden = true
 
-vim.o.completeopt = 'menuone,noinsert,noselect'
+vim.o.completeopt = 'menuone,noselect'
+vim.o.shortmess = vim.o.shortmess .. 'c'
 vim.g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'}
 
 vim.o.signcolumn = 'auto:[1-9]'
@@ -43,10 +44,6 @@ vim.wo.relativenumber = true
 vim.o.clipboard = 'unnamedplus'
 
 vim.o.updatetime = 100
-
-vim.api.nvim_exec([[
-    highlight link markdownError NONE
-]], false)
 
 -- Tracked by https://github.com/neovim/neovim/issues/13501
 local local_vimrc = vim.fn.getcwd()..'/.nvimrc'

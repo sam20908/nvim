@@ -20,7 +20,7 @@ return require('packer').startup(function()
   use 'preservim/nerdcommenter'
   use 'jackguo380/vim-lsp-cxx-highlight'
   use 'neovim/nvim-lspconfig'
-  use 'nvim-lua/completion-nvim'
+  use 'hrsh7th/nvim-compe'
   use 'puremourning/vimspector'
   use { 'ilyachur/cmake4vim', branch = 'master' }
   use 'mhinz/vim-startify'

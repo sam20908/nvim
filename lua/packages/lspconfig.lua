@@ -1,15 +1,44 @@
 local lspconfig = require('lspconfig')
-local completion = require('completion')
+local compe = require('compe')
+
+compe.setup{
+	preselect = 'always';
+	
+	source = {
+		path = true;
+		buffer = false;
+		calc = false;
+		nvim_lsp = true;
+		nvim_lua = true;
+		vsnip = false;
+	};
+}
+
+_G.completion_complete = function()
+    return vim.fn['compe#complete']()
+end
+
+_G.completion_confirm = function()
+    return vim.fn['compe#confirm']('<CR>')
+end
+
+_G.completion_close = function()
+    return vim.fn['compe#close']('<C-e>')
+end
 
 local on_attach = function(client, bufnr)
-	completion.on_attach(client, bufnr)
-
 	local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 	local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
-	buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+    buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-	local opts = { noremap=true, silent=true }
+	local opts = { noremap = true, silent = true }
+	local opts_expr = { expr = true }
+
+    buf_set_keymap('i', '<C-SPACE>', 'v:lua.completion_complete()', opts_expr)
+    buf_set_keymap('i', '<CR>', 'v:lua.completion_confirm()', opts_expr)
+    buf_set_keymap('i', '<C-e>', 'v:lua.completion_close()', opts_expr)
+
 	buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
 	buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
 	buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
@@ -42,6 +71,7 @@ local on_attach = function(client, bufnr)
 --	end
 end
 
-lspconfig.clangd.setup{ on_attach = on_attach }
+--lspconfig.clangd.setup{ on_attach = on_attach }
+lspconfig.ccls.setup{ on_attach = on_attach }
 lspconfig.pyright.setup{ on_attach = on_attach }
 lspconfig.cmake.setup{ on_attach = on_attach }
