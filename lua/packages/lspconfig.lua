@@ -49,6 +49,9 @@ lspkind.init({
 
 saga.init_lsp_saga()
 
+vim.g.lexima_no_default_rules = true
+vim.fn['lexima#set_default_rules']()
+
 local t = function(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
@@ -132,11 +135,8 @@ local on_attach = function(client, bufnr)
 --	end
 end
 
-vim.g.lsp_cxx_hl_use_text_props = true
-
 vim.cmd [[highlight link CompeDocumentation NormalFloat]]
 
---lspconfig.clangd.setup{ on_attach = on_attach }
 lspconfig.ccls.setup{ 
     on_attach = on_attach,
     init_options = {

@@ -16,13 +16,13 @@ return require('packer').startup(function()
   use 'lifepillar/vim-gruvbox8'
   use 'edkolev/tmuxline.vim'
 
-  --use 'nvim-treesitter/nvim-treesitter'
+  use 'nvim-treesitter/nvim-treesitter'
   use 'preservim/nerdcommenter'
-  use 'jackguo380/vim-lsp-cxx-highlight'
   use 'neovim/nvim-lspconfig'
   use 'onsails/lspkind-nvim'
   use 'glepnir/lspsaga.nvim'
   use 'hrsh7th/nvim-compe'
+  use 'cohama/lexima.vim'
   use 'm-pilia/vim-ccls'
   use 'puremourning/vimspector'
   use { 'ilyachur/cmake4vim', branch = 'master' }
