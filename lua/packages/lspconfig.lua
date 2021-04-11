@@ -91,6 +91,13 @@ local on_attach = function(client, bufnr)
 end
 
 --lspconfig.clangd.setup{ on_attach = on_attach }
-lspconfig.ccls.setup{ on_attach = on_attach }
+lspconfig.ccls.setup{ 
+    on_attach = on_attach,
+    init_options = {
+        highlight = {
+            lsRanges = true;
+        }
+    }
+}
 lspconfig.pyright.setup{ on_attach = on_attach }
 lspconfig.cmake.setup{ on_attach = on_attach }
