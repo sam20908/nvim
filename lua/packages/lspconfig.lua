@@ -1,5 +1,6 @@
 local lspconfig = require('lspconfig')
 local compe = require('compe')
+local lspkind = require('lspkind')
 
 compe.setup{
 	preselect = 'always';
@@ -13,6 +14,32 @@ compe.setup{
 		vsnip = false;
 	};
 }
+
+lspkind.init({
+	with_text = true,
+	symbol_map = {
+		Text = '',
+		Method = 'ƒ',
+		Function = '',
+		Constructor = '',
+		Variable = '',
+		Class = '',
+		Interface = 'ﰮ',
+		Module = '',
+		Property = '',
+		Unit = '',
+		Value = '',
+		Enum = '了',
+		Keyword = '',
+		Snippet = '﬌',
+		Color = '',
+		File = '',
+		Folder = '',
+		EnumMember = '',
+		Constant = '',
+		Struct = ''
+	 },
+})
 
 local t = function(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
@@ -91,6 +118,8 @@ local on_attach = function(client, bufnr)
 end
 
 vim.g.lsp_cxx_hl_use_text_props = true
+
+vim.cmd [[highlight link CompeDocumentation NormalFloat]]
 
 --lspconfig.clangd.setup{ on_attach = on_attach }
 lspconfig.ccls.setup{ 
