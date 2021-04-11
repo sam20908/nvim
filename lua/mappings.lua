@@ -4,6 +4,7 @@ vim.api.nvim_set_keymap('n', '<LEADER>sv', '<CMD>vsplit<CR>', opts)
 vim.api.nvim_set_keymap('n', '<LEADER>sh', '<CMD>split<CR>', opts)
 
 vim.api.nvim_set_keymap('n', '<LEADER>bd', '<CMD>bdelete<CR>', opts)
+vim.api.nvim_set_keymap('n', '<LEADER>cd', '<CMD>close<CR>', opts)
 
 vim.api.nvim_set_keymap('n', '<LEADER>qo', '<CMD>copen<CR>', opts)
 vim.api.nvim_set_keymap('n', '<LEADER>qc', '<CMD>cclose<CR>', opts)
