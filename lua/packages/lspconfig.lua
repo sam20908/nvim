@@ -90,6 +90,8 @@ local on_attach = function(client, bufnr)
 --	end
 end
 
+vim.g.lsp_cxx_hl_use_text_props = true
+
 --lspconfig.clangd.setup{ on_attach = on_attach }
 lspconfig.ccls.setup{ 
     on_attach = on_attach,
