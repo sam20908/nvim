@@ -19,26 +19,31 @@ compe.setup{
 lspkind.init({
 	with_text = true,
 	symbol_map = {
-		Text = '',
-		Method = 'ƒ',
-		Function = '',
-		Constructor = '',
-		Variable = '',
-		Class = '',
-		Interface = 'ﰮ',
-		Module = '',
-		Property = '',
-		Unit = '',
-		Value = '',
-		Enum = '了',
-		Keyword = '',
-		Snippet = '﬌',
-		Color = '',
-		File = '',
-		Folder = '',
-		EnumMember = '',
-		Constant = '',
-		Struct = ''
+		Method = "  ",
+	    Function = "  ",
+	    Variable = "[]",
+	    Field = "  ",
+	    TypeParameter = "<>",
+	    Constant = "  ",
+	    Class = " פּ ",
+	    Interface = " 蘒",
+	    Struct = "  ",
+	    Event = "  ",
+	    Operator = "  ",
+	    Module = "  ",
+	    Property = "  ",
+	    Enum = " 練",
+	    Reference = "  ",
+	    Keyword = "  ",
+	    File = "  ",
+	    Folder = " ﱮ ",
+	    Color = "  ",
+	    Unit = " 塞 ",
+	    Snippet = "  ",
+	    Text = "  ",
+	    Constructor = "  ",
+	    Value = "  ",
+	    EnumMember = "  "
 	 },
 })
 
@@ -60,6 +65,10 @@ _G.completion_confirm = function()
     end
 end
 
+_G.completion_close = function()
+    return vim.fn['compe#close']()
+end
+
 local on_attach = function(client, bufnr)
 	local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 	local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -71,6 +80,7 @@ local on_attach = function(client, bufnr)
 
     buf_set_keymap('i', '<C-SPACE>', 'v:lua.completion_complete()', opts_expr)
     buf_set_keymap('i', '<CR>', 'v:lua.completion_confirm()', opts_expr)
+    buf_set_keymap('i', '<C-e>', 'v:lua.completion_close()', opts_expr)
 
 	buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
 	buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
