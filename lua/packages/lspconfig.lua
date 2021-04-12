@@ -61,11 +61,7 @@ _G.completion_complete = function()
 end
 
 _G.completion_confirm = function()
-    if vim.fn.pumvisible() == 1 then
-        return vim.fn['compe#confirm']('<CR>')
-    else
-        return t '<CR>'
-    end
+    return vim.fn['compe#confirm'](vim.fn['lexima#expand'](t '<LT>CR>', 'i'))
 end
 
 _G.completion_close = function()
