@@ -29,8 +29,8 @@ return require('packer').startup(function()
   use 'mhinz/vim-startify'
   use 'tpope/vim-dispatch'
 
-  use 'preservim/nerdtree'
-  use 'ryanoasis/vim-devicons'
+  use 'kyazdani42/nvim-tree.lua'
+  use 'kyazdani42/nvim-web-devicons'
 
   use 'nvim-lua/popup.nvim'
   use 'nvim-lua/plenary.nvim'
