@@ -64,6 +64,11 @@ _G.completion_confirm = function()
     return vim.fn['compe#confirm'](vim.fn['lexima#expand'](t '<LT>CR>', 'i'))
 end
 
+_G.completion_confirm_no_alt_key = function()
+    -- Used to allow completion with multiple cursors
+    return vim.fn['compe#confirm']()
+end
+
 _G.completion_close = function()
     return vim.fn['compe#close']()
 end
@@ -79,6 +84,7 @@ local on_attach = function(client, bufnr)
 
     buf_set_keymap('i', '<C-SPACE>', 'v:lua.completion_complete()', opts_expr)
     buf_set_keymap('i', '<CR>', 'v:lua.completion_confirm()', opts_expr)
+    buf_set_keymap('i', '<C-y>', 'v:lua.completion_confirm_no_alt_key()', opts_expr)
     buf_set_keymap('i', '<C-e>', 'v:lua.completion_close()', opts_expr)
 
 	buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
