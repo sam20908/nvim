@@ -5,7 +5,7 @@ local saga = require('lspsaga')
 
 compe.setup{
 	preselect = 'always';
-	
+
 	source = {
 		path = true;
 		buffer = false;
@@ -44,7 +44,7 @@ lspkind.init({
 	    Constructor = "  ",
 	    Value = "  ",
 	    EnumMember = "  "
-	 },
+	},
 })
 
 saga.init_lsp_saga()
@@ -123,18 +123,18 @@ local on_attach = function(client, bufnr)
 		buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
 	end
 
---	if client.resolved_capabilities.document_highlight then
---    	vim.api.nvim_exec([[
---    		hi LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
---    	  	hi LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
---    	  	hi LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
---    	  	augroup lsp_document_highlight
---    	  	  autocmd! * <buffer>
---    	  	  autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
---    	  	  autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
---    	  	augroup END
---    	]], false)
---	end
+    --	if client.resolved_capabilities.document_highlight then
+    --    	vim.api.nvim_exec([[
+    --    		hi LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
+    --    	  	hi LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
+    --    	  	hi LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
+    --    	  	augroup lsp_document_highlight
+    --    	  	  autocmd! * <buffer>
+    --    	  	  autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+    --    	  	  autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+    --    	  	augroup END
+    --    	]], false)
+    --	end
 end
 
 vim.cmd [[highlight link CompeDocumentation NormalFloat]]
@@ -149,3 +149,48 @@ lspconfig.ccls.setup{
 }
 lspconfig.pyright.setup{ on_attach = on_attach }
 lspconfig.cmake.setup{ on_attach = on_attach }
+
+local system_name
+if vim.fn.has("mac") == 1 then
+    system_name = "macOS"
+elseif vim.fn.has("unix") == 1 then
+    system_name = "Linux"
+elseif vim.fn.has('win32') == 1 then
+    system_name = "Windows"
+else
+    print("Unsupported system for sumneko")
+end
+
+-- set the path to the sumneko installation; if you previously installed via the now deprecated :LspInstall, use
+local sumneko_root_path = vim.fn.stdpath('cache')..'/lspconfig/sumneko_lua/lua-language-server'
+local sumneko_binary = sumneko_root_path.."/bin/"..system_name.."/lua-language-server"
+
+lspconfig.sumneko_lua.setup {
+    cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
+    on_attach = on_attach,
+    settings = {
+        Lua = {
+            runtime = {
+                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                version = 'LuaJIT',
+                -- Setup your lua path
+                path = vim.split(package.path, ';'),
+            },
+            diagnostics = {
+                -- Get the language server to recognize the `vim` global
+                globals = {'vim'},
+            },
+            workspace = {
+                -- Make the server aware of Neovim runtime files
+                library = {
+                    [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+                    [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+                },
+            },
+            -- Do not send telemetry data containing a randomized but unique identifier
+            telemetry = {
+                enable = false,
+            },
+        },
+    },
+}
