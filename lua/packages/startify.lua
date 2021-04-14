@@ -1,8 +1,8 @@
-function get_file_name(filepath)
+local function get_file_name(filepath)
     return string.match(filepath, "^.+/(.+)$")
 end
 
-function get_file_ext(filepath)
+local function get_file_ext(filepath)
     -- We need to remove the dot in the extension
     return string.sub(string.match(filepath, "^.+(%..+)$"), 2)
 end
