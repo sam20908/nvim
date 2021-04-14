@@ -15,14 +15,9 @@ _G.get_icon = function(filepath)
 
     local filename = get_file_name(filepath)
     local file_ext = get_file_ext(filepath)
-    local icon = devicons.get_icon(filename, file_ext)
 
-    if not icon then
-        -- The default icon was taken from nvim-web-devicons source
-        return ''
-    else
-        return icon
-    end
+    return devicons.get_icon(filename, file_ext, { default = true })
+
 end
 
 vim.cmd [[
