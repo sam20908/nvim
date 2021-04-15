@@ -10,6 +10,10 @@ local my_colors = {
     white = '#FFFFFF'
 }
 
+local function wrap_in_spaces(str)
+    return ' ' .. str .. ' '
+end
+
 gls.left[1] = {
     ViMode = {
         provider = function()
@@ -22,7 +26,8 @@ gls.left[1] = {
                 [''] = 'VISUAL BLOCK'
             }
 
-            return '  ' .. alias[vim.fn.mode()] .. ' '
+            -- Having to add extra space to the left to avoid unaligned wrapping spaces
+            return ' ' .. wrap_in_spaces(alias[vim.fn.mode()])
         end,
         separator = ' ',
         highlight = { my_colors.black, theme.green },
@@ -75,7 +80,7 @@ gls.right[1] = {
 gls.right[2] = {
     FileFormat = {
         provider = function()
-            return ' ' .. fileinfo.get_file_format() .. ' '
+            return wrap_in_spaces(fileinfo.get_file_format())
         end,
         condition = condition.buffer_not_empty,
         separator = ' ',
