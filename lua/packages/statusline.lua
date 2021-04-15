@@ -22,11 +22,22 @@ gls.left[1] = {
             local alias = {
                 n = 'NORMAL',
                 i = 'INSERT',
-                c= 'COMMAND',
-                v= 'VISUAL',
-                V= 'VISUAL LINE',
+                c = 'COMMAND',
+                v = 'VISUAL',
+                V = 'VISUAL LINE',
                 [''] = 'VISUAL BLOCK'
             }
+
+            local mode_color = {
+                n = theme.green,
+                i = theme.cyan,
+                c = theme.magenta,
+                v = theme.violet,
+                V = theme.violet,
+                [''] = theme.violet
+            }
+
+            vim.api.nvim_command('hi GalaxyViMode guibg=' .. mode_color[vim.fn.mode()])           
 
             -- Having to add extra space to the left to avoid unaligned wrapping spaces
             return ' ' .. wrap_in_spaces(alias[vim.fn.mode()])
@@ -41,7 +52,7 @@ gls.left[2] = {
     FileIcon = {
         provider = 'FileIcon',
         condition = condition.buffer_not_empty,
-        highlight = { fileinfo.get_file_icon_color, theme.bg  }
+        highlight = { fileinfo.get_file_icon_color, theme.bg }
     }
 }
 
@@ -105,7 +116,7 @@ gls.right[1] = {
             modifies = modifies and modifies or 0
             removes = removes and removes or 0
 
-            return string.format('%s +%d ~%d -%d', branch, adds, modifies, removes)
+            return string.format('🌲 %s +%d ±%d -%d', branch, adds, modifies, removes)
         end,
         condition = function()
             return condition.check_git_workspace and vcs.get_git_branch()
