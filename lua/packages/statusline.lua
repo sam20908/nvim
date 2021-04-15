@@ -95,7 +95,6 @@ gls.right[2] = {
 
 gls.right[1] = {
     VCS = {
-        --provider = { 'GitBranch', 'DiffAdd', 'DiffModified', 'DiffRemove' },
         provider = function()
             local branch = vcs.get_git_branch()
             local adds = vcs.diff_add()
@@ -108,7 +107,9 @@ gls.right[1] = {
 
             return string.format('%s +%d ~%d -%d', branch, adds, modifies, removes)
         end,
-        condition = condition.check_git_workspace,
+        condition = function()
+            return condition.check_git_workspace and vcs.get_git_branch()
+        end,
         highlight = { my_colors.white, theme.bg }
     }
 }
