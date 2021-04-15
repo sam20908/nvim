@@ -13,7 +13,6 @@ return require('packer').startup(function(use)
 
     use 'glepnir/galaxyline.nvim'
     use 'lifepillar/vim-gruvbox8'
-    --use 'edkolev/tmuxline.vim'
 
     use 'nvim-treesitter/nvim-treesitter'
     use 'preservim/nerdcommenter'
