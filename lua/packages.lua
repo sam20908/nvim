@@ -11,10 +11,8 @@ end
 return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
-    use 'vim-airline/vim-airline'
-    use 'vim-airline/vim-airline-themes'
+    use 'glepnir/galaxyline.nvim'
     use 'lifepillar/vim-gruvbox8'
-    use 'edkolev/tmuxline.vim'
 
     use 'nvim-treesitter/nvim-treesitter'
     use 'preservim/nerdcommenter'
