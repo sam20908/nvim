@@ -3,7 +3,6 @@ local fileinfo = require('galaxyline.provider_fileinfo')
 local condition = require('galaxyline.condition')
 local vcs = require('galaxyline.provider_vcs')
 local diagnostic = require('galaxyline.provider_diagnostic')
-local lspclient = require('galaxyline.provider_lsp')
 local gls = gl.section
 
 local theme = require('galaxyline.theme').default
