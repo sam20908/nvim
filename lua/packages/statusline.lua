@@ -14,8 +14,8 @@ local my_colors = {
     grey = '#403e37'
 }
 
-local function wrap_in_spaces(str)
-    return string.format(' %s ', str)
+local function buf_has_lsp()
+    return not vim.tbl_isempty(vim.lsp.buf_get_clients(0))
 end
 
 gls.left[1] = {
@@ -41,12 +41,11 @@ gls.left[1] = {
 
             vim.api.nvim_command('hi GalaxyViMode guibg=' .. mode_color[vim.fn.mode()])
 
-            -- Having to add extra space to the left to avoid unaligned wrapping spaces
-            return ' ' .. wrap_in_spaces(alias[vim.fn.mode()])
+            return string.format('  %s ', alias[vim.fn.mode()])
         end,
         separator = ' ',
         highlight = { my_colors.black, theme.green },
-        separator_highlight = { theme.bg, my_colors.grey }
+        separator_highlight = { theme.bg, theme.bg }
     }
 }
 
@@ -54,7 +53,7 @@ gls.left[2] = {
     FileIcon = {
         provider = 'FileIcon',
         condition = condition.buffer_not_empty,
-        highlight = { fileinfo.get_file_icon_color, my_colors.grey }
+        highlight = { fileinfo.get_file_icon_color, theme.bg }
     }
 }
 
@@ -62,7 +61,7 @@ gls.left[3] = {
     FileName = {
         provider = 'FileName',
         condition = condition.buffer_not_empty,
-        highlight = { my_colors.white, my_colors.grey }
+        highlight = { my_colors.white, theme.bg }
     }
 }
 
@@ -79,40 +78,100 @@ gls.left[4] = {
                 return percent
             end
         end,
-        separator = ' ',
         condition = condition.buffer_not_empty,
-        highlight = { my_colors.white, my_colors.grey },
-        separator_highlight = { theme.bg, theme.bg }
+        highlight = { my_colors.white, theme.bg }
     }
 }
 
 gls.left[5] = {
-    Diagnostics = {
+    Errors = {
         provider = function()
+            if not buf_has_lsp() then
+                return ''
+            end
+
             local errors = diagnostic.get_diagnostic_error()
+
+            if not errors then
+                return ''
+            else
+                return string.format('  E:%s', errors)
+            end
+        end, 
+        highlight = { my_colors.black, theme.red }
+    }
+}
+
+gls.left[6] = {
+    Warnings = {
+        provider = function()
+            if not buf_has_lsp() then
+                return ''
+            end
+
             local warns = diagnostic.get_diagnostic_warn()
+
+            if not warns then
+                return ''
+            else
+                return string.format('  W:%s', warns)
+            end
+        end, 
+        highlight = { my_colors.black, theme.orange }
+    }
+}
+
+gls.left[7] = {
+    Hints = {
+        provider = function()
+            if not buf_has_lsp() then
+                return ''
+            end
+
             local hints = diagnostic.get_diagnostic_hint()
+
+            if not hints then
+                return ''
+            else
+                return string.format('  H:%s', hints)
+            end
+        end, 
+        highlight = { my_colors.black, theme.yellow }
+    }
+}
+
+gls.left[8] = {
+    Infos = {
+        provider = function()
+            if not buf_has_lsp() then
+                return ''
+            end
+
             local infos = diagnostic.get_diagnostic_info()
 
-            errors = errors and errors or '0'
-            warns = warns and warns or '0'
-            hints = hints and hints or '0'
-            infos = infos and infos or '0'
+            if not infos then
+                return ''
+            else
+                return string.format('  I:%s', infos)
+            end
+        end, 
+        highlight = { my_colors.black, my_colors.white }
+    }
+}
 
-            return string.format('❌: %s 🟡: %s ❕: %s ❔: %s', errors, warns, hints, infos)
+gls.left[9] = {
+    Separator = {
+        provider = function()
+            return ''
         end,
-        condition = function()
-            -- This only triggers on new buffers when saved
-            return not string.match(lspclient.get_lsp_client(), 'No Active Lsp')
-        end,
-        highlight = { my_colors.white, theme.bg }
+        highlight = { theme.bg, theme.bg }
     }
 }
 
 gls.right[3] = {
     FileEncode = {
         provider = function()
-            return wrap_in_spaces(fileinfo.get_file_encode())
+            return string.format(' %s ', fileinfo.get_file_encode())
         end,
         condition = condition.buffer_not_empty,
         highlight = { my_colors.black, theme.green }
@@ -122,7 +181,7 @@ gls.right[3] = {
 gls.right[2] = {
     FileFormat = {
         provider = function()
-            return wrap_in_spaces(fileinfo.get_file_format())
+            return string.format(' %s ', fileinfo.get_file_format())
         end,
         condition = condition.buffer_not_empty,
         separator = ' ',
