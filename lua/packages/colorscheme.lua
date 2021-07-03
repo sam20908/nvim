@@ -1,6 +1,6 @@
 vim.api.nvim_set_option('background', 'dark')
 
-vim.cmd('colorscheme gruvbox8_hard')
+vim.cmd('colorscheme gruvbox')
 
 vim.api.nvim_set_var('airline_theme', 'base16_gruvbox_dark_hard')
 vim.api.nvim_set_var('airline#extensions#tabline#enabled', 1)

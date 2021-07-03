@@ -1,45 +1,36 @@
-local execute = vim.api.nvim_command
-local fn = vim.fn
+require "paq" {
+    'savq/paq-nvim';
 
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+    --'kyazdani42/nvim-tree.lua';
 
-if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
-    execute 'packadd packer.nvim'
-end
+    'hoob3rt/lualine.nvim';
+    'rktjmp/lush.nvim';
+    'npxbr/gruvbox.nvim';
 
-return require('packer').startup(function(use)
-    use 'wbthomason/packer.nvim'
+    'preservim/nerdcommenter';
 
-    use 'glepnir/galaxyline.nvim'
-    use 'lifepillar/vim-gruvbox8'
+    --'neovim/nvim-lspconfig';
+    --'onsails/lspkind-nvim';
+    --'glepnir/lspsaga.nvim';
 
-    use 'nvim-treesitter/nvim-treesitter'
-    use 'preservim/nerdcommenter'
-    use 'neovim/nvim-lspconfig'
-    use 'onsails/lspkind-nvim'
-    use 'glepnir/lspsaga.nvim'
-    use 'hrsh7th/nvim-compe'
-    use 'cohama/lexima.vim'
-    use 'm-pilia/vim-ccls'
-    use 'puremourning/vimspector'
-    use { 'ilyachur/cmake4vim', branch = 'master' }
-    use 'mhinz/vim-startify'
-    use 'tpope/vim-dispatch'
+    --'nvim-lua/completion-nvim';
+    --'cohama/lexima.vim';
 
-    use 'ryanoasis/vim-devicons'
-    use 'kyazdani42/nvim-web-devicons'
-    use 'preservim/nerdtree'
+    'puremourning/vimspector';
+    { 'ilyachur/cmake4vim', branch = 'master' };
+    'mhinz/vim-startify';
+    'tpope/vim-dispatch';
 
-    use 'nvim-lua/popup.nvim'
-    use 'nvim-lua/plenary.nvim'
-    use 'nvim-telescope/telescope.nvim'
+    'kyazdani42/nvim-web-devicons';
+    'kyazdani42/nvim-tree.lua';
 
-    use 'tpope/vim-unimpaired'
-    use 'tpope/vim-surround'
-    use 'tpope/vim-fugitive'
-    use 'airblade/vim-gitgutter'
+    --'nvim-lua/popup.nvim';
+    --'nvim-lua/plenary.nvim';
+    --'nvim-telescope/telescope.nvim';
 
-    use { 'mg979/vim-visual-multi', branch = 'master' }
-    use 'wellle/targets.vim'
-end)
+    'tpope/vim-unimpaired';
+    'tpope/vim-surround';
+    'tpope/vim-fugitive';
+
+    { 'mg979/vim-visual-multi', branch = 'master' };
+}

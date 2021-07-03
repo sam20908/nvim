@@ -23,7 +23,7 @@ vim.o.cmdheight = 2
 vim.o.completeopt = 'menuone,noselect'
 vim.o.shortmess = vim.o.shortmess .. 'c'
 
-vim.o.signcolumn = 'auto:[1-9]'
+--vim.o.signcolumn = 'auto:[1-9]' PROBLEMATIC LINE
 
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
