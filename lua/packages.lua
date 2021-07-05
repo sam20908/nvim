@@ -1,36 +1,45 @@
-require "paq" {
-    'savq/paq-nvim';
+local execute = vim.api.nvim_command
+local fn = vim.fn
 
-    --'kyazdani42/nvim-tree.lua';
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 
-    'hoob3rt/lualine.nvim';
-    'rktjmp/lush.nvim';
-    'npxbr/gruvbox.nvim';
+if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
+    execute 'packadd packer.nvim'
+end
 
-    'preservim/nerdcommenter';
+return require('packer').startup(function(use)
+    use 'wbthomason/packer.nvim'
 
-    --'neovim/nvim-lspconfig';
-    --'onsails/lspkind-nvim';
-    --'glepnir/lspsaga.nvim';
+    use 'glepnir/galaxyline.nvim'
+    use 'lifepillar/vim-gruvbox8'
 
-    --'nvim-lua/completion-nvim';
-    --'cohama/lexima.vim';
+    use 'nvim-treesitter/nvim-treesitter'
+    use 'preservim/nerdcommenter'
+    use 'neovim/nvim-lspconfig'
+    use 'onsails/lspkind-nvim'
+    use 'glepnir/lspsaga.nvim'
+    use 'hrsh7th/nvim-compe'
+    use 'cohama/lexima.vim'
+    use 'm-pilia/vim-ccls'
+    use 'puremourning/vimspector'
+    use { 'ilyachur/cmake4vim', branch = 'master' }
+    use 'mhinz/vim-startify'
+    use 'tpope/vim-dispatch'
 
-    'puremourning/vimspector';
-    { 'ilyachur/cmake4vim', branch = 'master' };
-    'mhinz/vim-startify';
-    'tpope/vim-dispatch';
+    use 'ryanoasis/vim-devicons'
+    use 'kyazdani42/nvim-web-devicons'
+    use 'preservim/nerdtree'
 
-    'kyazdani42/nvim-web-devicons';
-    'kyazdani42/nvim-tree.lua';
+    use 'nvim-lua/popup.nvim'
+    use 'nvim-lua/plenary.nvim'
+    use 'nvim-telescope/telescope.nvim'
 
-    --'nvim-lua/popup.nvim';
-    --'nvim-lua/plenary.nvim';
-    --'nvim-telescope/telescope.nvim';
+    use 'tpope/vim-unimpaired'
+    use 'tpope/vim-surround'
+    use 'tpope/vim-fugitive'
+    use 'airblade/vim-gitgutter'
 
-    'tpope/vim-unimpaired';
-    'tpope/vim-surround';
-    'tpope/vim-fugitive';
-
-    { 'mg979/vim-visual-multi', branch = 'master' };
-}
+    use { 'mg979/vim-visual-multi', branch = 'master' }
+    use 'wellle/targets.vim'
+end)
