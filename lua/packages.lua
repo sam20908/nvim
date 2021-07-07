@@ -11,8 +11,10 @@ end
 return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
-    use 'glepnir/galaxyline.nvim'
-    use 'lifepillar/vim-gruvbox8'
+    use 'hoob3rt/lualine.nvim'
+
+    use 'rktjmp/lush.nvim'
+    use 'npxbr/gruvbox.nvim'
 
     use 'nvim-treesitter/nvim-treesitter'
     use 'preservim/nerdcommenter'

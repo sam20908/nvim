@@ -13,6 +13,14 @@ compe.setup{
 		nvim_lsp = true;
 		nvim_lua = true;
 		vsnip = false;
+		documentation = {
+            border = "rounded",
+            winhighlight = "CompeDocumentation",
+            max_width = 120,
+            min_width = 40,
+            max_height = math.floor(vim.o.lines * 0.3),
+            min_height = 1,
+        };
 	};
 }
 
@@ -139,16 +147,18 @@ end
 
 vim.cmd [[highlight link CompeDocumentation NormalFloat]]
 
-lspconfig.ccls.setup{ 
-    on_attach = on_attach,
-    init_options = {
-        highlight = {
-            lsRanges = true;
-        }
-    }
-}
+--lspconfig.ccls.setup{ 
+    --on_attach = on_attach,
+    --init_options = {
+        --highlight = {
+            --lsRanges = true;
+        --}
+    --}
+--}
+lspconfig.clangd.setup{ on_attach = on_attach }
 lspconfig.pyright.setup{ on_attach = on_attach }
 lspconfig.cmake.setup{ on_attach = on_attach }
+lspconfig.gdscript.setup{ on_attach = on_attach }
 
 --Disabled due to crashes
 --local system_name
