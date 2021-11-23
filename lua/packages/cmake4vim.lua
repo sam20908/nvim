@@ -1,4 +1,6 @@
 vim.g.cmake_vimspector_support = 1
+vim.g.cmake_build_dir = 'build'
+vim.g.cmake_build_type = 'Debug'
 
 local opts = { noremap = true, silent = true }
 local opts_loud = { noremap = true }

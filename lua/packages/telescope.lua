@@ -1,3 +1,11 @@
+require'telescope'.setup{
+    pickers = {
+        find_files = {
+            hidden = true
+        }
+    }
+}
+
 local opts = { noremap = true, silent = true }
 
 vim.api.nvim_set_keymap('n', '<LEADER>ff', '<CMD>Telescope find_files<CR>', opts)
