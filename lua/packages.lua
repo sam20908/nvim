@@ -12,6 +12,7 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
     use 'Mofiqul/vscode.nvim'
+    use 'kyazdani42/nvim-web-devicons'
 
     use { 'nvim-treesitter/nvim-treesitter', branch = '0.5-compat' }
     use 'preservim/nerdcommenter'
