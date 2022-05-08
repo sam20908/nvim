@@ -25,20 +25,6 @@ vim.o.shortmess = vim.o.shortmess .. 'c'
 
 --vim.o.signcolumn = 'auto:[1-9]' PROBLEMATIC LINE
 
-vim.o.tabstop = 4
-vim.o.shiftwidth = 4
-vim.o.expandtab = true
-vim.bo.tabstop = 4
-vim.bo.shiftwidth = 4
-vim.bo.expandtab = true
-
-vim.o.copyindent = true
-vim.o.preserveindent = true
-vim.o.smartindent = true
-vim.bo.copyindent = true
-vim.bo.preserveindent = true
-vim.bo.smartindent = true
-
 vim.wo.number = true
 vim.wo.relativenumber = true
 
