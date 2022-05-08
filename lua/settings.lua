@@ -46,7 +46,6 @@ vim.o.clipboard = 'unnamedplus'
 
 vim.o.updatetime = 100
 
--- Tracked by https://github.com/neovim/neovim/issues/13501
 local local_vimrc = vim.fn.getcwd()..'/.nvimrc'
 if vim.loop.fs_stat(local_vimrc) then
     vim.cmd('source '..local_vimrc)

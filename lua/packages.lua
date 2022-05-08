@@ -11,20 +11,12 @@ end
 return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
-    use 'Mofiqul/vscode.nvim'
-    use 'kyazdani42/nvim-web-devicons'
+    use 'morhetz/gruvbox'
 
-    use { 'nvim-treesitter/nvim-treesitter', branch = '0.5-compat' }
-    use 'preservim/nerdcommenter'
-
-    use 'puremourning/vimspector'
-    use { 'ilyachur/cmake4vim', branch = 'master' }
-    use 'tpope/vim-dispatch'
-
+    use 'nvim-treesitter/nvim-treesitter'
     use 'sbdchd/neoformat'
 
-    use 'mhinz/vim-startify'
-
+    use 'kyazdani42/nvim-web-devicons'
     use 'kyazdani42/nvim-tree.lua'
 
     use 'nvim-lua/popup.nvim'
@@ -33,7 +25,8 @@ return require('packer').startup(function(use)
 
     use 'tpope/vim-unimpaired'
     use 'tpope/vim-surround'
-    use 'tpope/vim-fugitive'
+    use 'cohama/lexima.vim'
+    use 'preservim/nerdcommenter'
 
     use { 'mg979/vim-visual-multi', branch = 'master' }
     use 'wellle/targets.vim'
