@@ -1,5 +1,7 @@
 local opts = { noremap = true, silent = true }
 
+vim.api.nvim_set_keymap('n', '<LEADER>aa', 'gg^vG$', opts)
+
 vim.api.nvim_set_keymap('n', '<LEADER>sv', '<CMD>vsplit<CR>', opts)
 vim.api.nvim_set_keymap('n', '<LEADER>sh', '<CMD>split<CR>', opts)
 
